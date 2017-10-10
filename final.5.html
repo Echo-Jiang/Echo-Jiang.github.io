@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>hao123: final.1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+      .col-xs-12 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <center><form class="form-inline">
+      <div class="form-group" style="padding:30px">
+        <label for="exampleInputSearch">搜 索</label>
+        <input type="search" class="form-control" id="search">
+      </div>
+      <button type="button" class="btn btn-default">提交</button>
+    </form></center> 
+    
+    <div class="container-fluid" style="border:2px solid lightgrey; margin:20px; padding:20px">
+      <div class="row" id="row-00"></div>
+      <div class="row" id="row-01"></div>
+      <div class="row" id="row-02"></div>
+      <hr>
+      <div class="row" id="row-03"></div>
+      <div class="row" id="row-04"></div>
+      <div class="row" id="row-05"></div>
+    </div>
+
+  </body>
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/docs.min.js"></script>
+  
+  <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        var key =$("#search").val();
+        window.open("https://www.baidu.com/s?wd="+ key);
+        
+      });
+      
+      $("#search").keydown(function(event){  
+        if(event.keyCode == "13"){  
+          event.preventDefault();
+          // alert("hhh");  
+          window.open("https://www.baidu.com/s?wd=" + $("#search").val());  
+        } 
+      });
+      // 先将所有的row的数据都存好
+      var names0 = ["百度","新浪","搜狐","腾讯","网易","优酷网"];
+      var urls0 = ["https://www.baidu.com","https://www.xina.com.cn","https://www.sohu.com","https://www.qq.com","https://www.163.com","https://www.youku.com"];
+      var names1 = ["天猫", "凤凰网", "淘宝网", "免费游戏", "4399游戏", "hao123影视"];  
+      var urls1 = ["https://www.tmall.com", "http://www.ifeng.com", "https://www.taobao.com/", "http://game.hao123.com/", "http://www.4399.com/", "http://v.hao123.baidu.com/"]; 
+      var names2 = ["京东商城", "苏宁易购", "今日特价", "体育", "汽车之家", "聚划算"]; 
+      var urls2 = ["https://union-click.jd.com/jdc", "https://www.suning.com", "http://tejia.hao123.com", "http://www.hao123.com/sports", "http://www.autohome.com.cn", "https://s.click.taobao.com/qvi0lew"]; 
+      var names3 = ["东方财富", "58同城", "房天下", "携程旅游网", "37游戏", "12306"]; 
+      var urls3 = ["http://www.eastmoney.com", "http://jump.luna.58.com/s", "http://www.fang.com/", "http://u.ctrip.com", "http://www.37.com/", "http://www.12306.cn"]; 
+      var names4 = ["百度地图", "六间房直播", "booking酒店", "去哪儿", "头条新闻", "QQ邮箱"]; 
+      var urls4 = ["http://map.baidu.com/", "https://www.6.cn/", "https://www.booking.com", "https://www.qunar.com", "http://tuijian.hao123.com", "http://mail.qq.com/"]; 
+      var names5 = ["网易考拉海购", "哔哩哔哩", "唯品会", "驴妈妈旅游", "爱淘宝", "彩票"]; 
+      var urls5 = ["http://www.kaola.com/activity/detail/31331.shtml", "http://www.bilibili.com", "https://dmp-data.vip.com/deeplink/goHome", "http://www.lvmama.com", "http://redirect.simba.taobao.com/rd", "http://caipiao.hao123.com"]; 
+      // 再将上面所有row的数据再存入新的数组数组
+      
+      var namesArray = [names0, names1, names2, names3, names4, names5];
+      var urlsArray = [urls0, urls1, urls2, urls3, urls4, urls5];
+      
+      var rowContainer = $("#row-container");
+      
+      for(var rowIndex = 0; rowIndex < namesArray.length; rowIndex++){
+        var newRow = $("<div/>");
+        var newRowId = "#row-0" + rowIndex;
+        newRow.attr("id","newRowId");
+        newRow.attr("class","row");
+        rowContainer.append("#newRow");
+        
+        var names = namesArray[rowIndex];
+        var urls = urlsArray[rowIndex];
+        for(var i = 0; i < names.length; i++){
+          var div=$("<div/>");
+          div.attr("class","col-lg-2 col-md-3 col-sm-4 col-xs-6");
+          var a = $("<a/>");
+          a.attr("href",urls[i]);
+          a.text(names[i]);
+          div.append(a);
+          
+          // var rowIdString ="#row-0" + rowIndex;
+          // var theRow = $("#rowIdString");
+          // theRow.append(div);
+          newRow.append(div);
+          
+        }
+      }
+      
+      
+      
+      
+      
+      
+      var namesArray = [names0, names1, names2, names3, names4, names5]; 
+      var urlsArray = [urls0, urls1, urls2, urls3, urls4, urls5]; 
+
+      // rowIndex表示是第几行
+      for (var rowIndex = 0; rowIndex < namesArray.length; rowIndex++) {
+        // 取出第rowIndex行的名称数组
+        var names = namesArray[rowIndex]; 
+        // 取出第rowIndex行的地址数组
+        var urls = urlsArray[rowIndex]; 
+        for (var i = 0; i < names.length; i++) {
+          var div = $("<div></div>"); 
+          div.attr("class", "col-lg-2 col-md-3 col-sm-4 col-xs-6"); 
+          var a = $("<a></a>"); 
+          a.attr("href", urls[i]); 
+          a.attr("target", "_blank"); 
+          a.text(names[i]); 
+          div.append(a); 
+          // rowIdString是第rowIndex行的id，需要用"row-0"拼接rowIndex来生成
+          var rowIdString = "#row-0" + rowIndex; 
+          // 根据rowIdString找到该row，标记为变量theRow
+          var theRow = $(rowIdString); 
+          theRow.append(div); 
+        }
+      }
+    })
+   </script>
+</html>

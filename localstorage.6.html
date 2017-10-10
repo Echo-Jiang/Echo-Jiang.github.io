@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    
+    <script>
+        $("body").ready(function(){
+            if (typeof(Storage) !== "undefined") {
+                // 时间数组放在localStorage.timeArray里
+                if(localStorage.timeArray){
+                    // 把timeArray显示出来
+                    // 取出上次的时间
+                    var array = JSON.parse(localStorage.timeArray);
+                    var length = array.length; 
+                    var htmlString = ""; 
+                    for (var i = 0; i < length; i++) {
+                        htmlString += array[i] + "<br/>"; 
+                    }
+                    $("body").html(htmlString); 
+                } else {
+                    // 初始化timeArray
+                    var array = []; 
+                    $("body").text("Hello");
+                }
+                // 把这次的时间存进timeArray
+                array.push(Date()); 
+                // 把timeArray存入localStorage
+                localStorage.timeArray = JSON.stringify(array); 
+            }else{
+                
+            }
+        });
+    </script>
+
+    </body>
+</html>

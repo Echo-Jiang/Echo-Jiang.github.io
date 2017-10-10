@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <p id="demo"></p>
+    <script>
+        $("body").ready(function(){
+            if (typeof(Storage) !== "undefined") {
+                if(localStorage.xxx){
+                    // 取出上次的时间
+                    var lastDate = localStorage.xxx; 
+                   $("#demo").html(lastDate);
+                } else {
+                    $("body").text("Hello");
+                    
+                }
+                // 把这次的时间存好
+                var date = Date(); 
+                localStorage.xxx = date;
+            }else{
+                
+            }
+        });
+    </script>
+
+    </body>
+</html>

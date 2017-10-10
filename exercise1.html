@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title> </title>
+    </head>
+    <body>
+    <script>
+      $(document).ready(function() {
+            var names = ["baidu", "sohu", "weibo","renren", "qq"];
+            var urls = ["https://www.baidu.com", "https://www.sohu.com", "https://www.weibo.com", "https://www.renren.com", "https://www.qq.com"]; 
+            
+          var aaa = $("body").append("<ul></ul>");
+          var length = names.length;
+          for (var i = 0; i < length; i++) {
+              aaa.append("<li><a href='" + urls[i] + "' >" + names[i]+"</a></li>");
+               //aaa.append('<li><a href="https://www.baidu.com">Baidu</a></li>'); 
+          }          
+      }); 
+    </script>
+    </body>
+</html>

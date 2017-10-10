@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <script>
+        $("body").ready(function(){
+            var url = "http://dpapi.dispatch.paixin.com/search_list?line="; 
+            var param = {"keyword": "beauty"}; 
+            $.post(url, param, function(data) {
+                    data = JSON.parse(data); 
+                    if (1 == data.out) {
+                    //   alert(data.data);      
+                        var length = data.data.length; 
+                        for (var i = 0; i < length; i++) {
+                            $("body").append('<div style="width: 300px; height: 300px; float: left; padding: 4px"><img src="' + data.data[i].image + '" style="width:100%; height:100%" /></div>'); 
+                        }
+                    }
+            }); 
+            // var names = ["baidu", "sohu", "qq"];
+            // var urls = ["https://www.baidu.com", "https://www.sohu.com", "https://www.qq.com"];
+            // var ul = $("<ul></ul>");
+            // $("body").append(ul); 
+            
+            // for(var i = 0; i < names.length; i++){
+            //     var li = $("<li></li>"); 
+            //     //var a = $("<a href='" + urls[i] + "'>" + names[i] + "</a>"); 
+            //     var a = $("<a></a>"); 
+            //     a.attr("href", urls[i]); 
+            //     a.text(names[i]);  
+            //     li.append(a); 
+            //     ul.append(li);
+            // }
+        });
+    </script>
+    </body>
+</html>
+

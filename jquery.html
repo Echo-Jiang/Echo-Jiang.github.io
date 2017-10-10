@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> </title>
+    </head>
+    <body>
+    
+    
+    </body>
+    
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var level01 = $('<div id="level01" style = "background-color: yellow; width: 500px; height: 500px"></div>');
+            var level02 = $('<div id="level02" style = "background-color: green; width: 400px; height: 400px"></div>');
+            var level03 = $('<div id="level03" style = "background-color: blue; width: 300px; height: 300px"></div>');
+            var i = $('<a href = "https://www.baidu.com">百度</a>');
+            // level03.attr("href", i);
+            $("body").append(level01);
+            level01.append(level02);
+            level02.append(level03);
+            level03.append(i);
+        })
+    </script>
+</html>

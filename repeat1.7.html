@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style type="text/css">
+            a:hover {
+                color: yellow
+            }
+        </style>
+    </head>
+    <body>
+    <script>
+        $("body").ready(function(){
+            var names = ["baidu", "sohu", "qq"];
+            var urls = ["https://www.baidu.com", "https://www.sohu.com", "https://www.qq.com"];
+            var ul = $("<ul/>");
+            ul.appendTo($("body")); 
+            ul.css("background", "grey"); 
+            
+            for(var i = 0; i < names.length; i++){
+                var li = $("<li/>"); 
+                //var a = $("<a href='" + urls[i] + "'>" + names[i] + "</a>"); 
+                var a = $("<a/>"); 
+                a.attr("href", urls[i]); 
+                a.text(names[i]);  
+                a.appendTo(li); 
+                li.appendTo(ul);
+            }
+        });
+    </script>
+    </body>
+</html>
+

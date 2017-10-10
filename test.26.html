@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/result.css" rel="stylesheet">
+
+  </head>
+  
+  <body>
+    <center><form class="form-inline" style="padding: 30px">
+      <div class="btn-group">
+        <button id="item" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">百度 &nbsp&nbsp<span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li id="baidu"><a href="#">百度</a></li>
+          <li id="sougou"><a href="#">搜狗</a></li>
+          <li id="goole"><a href="#">谷歌</a></li>
+        </ul>
+      </div> 
+      <input type="search" class="form-control" id="search">
+      <button type="button" class="btn btn-default" id="btn-search">&nbsp&nbsp&nbsp搜索&nbsp&nbsp</button>
+      <ul class="results" id="result-group"></ul>
+    </form></center>
+  </body>
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/docs.min.js"></script>
+  
+  <script>
+    $(document).ready(function(){
+      var searchPrefixArray=["https://www.baidu.com/s?wd=", "https://www.sougou.com/web?query=", "https://www.goole.co.kr/search?q="];
+      var searchEngineArray=["百度", "搜狗", "谷歌"];
+      var searchPrefix=searchPrefixArray[0];
+      var sufix= '&nbsp&nbsp<span class="caret"></span>';
+      $("#btn-search").click(function(){
+        search();
+      });
+      $("#search").keydown(function(event){
+        if(event.keyCode=="13"){
+          event.preventDefault();
+          search();
+        }
+      });
+      $("#baidu").on("click",function(){
+        $("#item").html("百度" + sufix);
+        searchPrefix = searchPrefixArray[0];
+      });
+      $("#sougou").on("click",function(){
+        $("#item").html("搜狗" + sufix);
+        searchPrefix = searchPrefixArray[1];
+      });
+      $("#goole").on("click",function(){
+        $("#item").html("谷歌" + sufix);
+        searchPrefix = searchPrefixArray[2];
+      });
+      // $("#btn-history").on("click", function(){
+      $("#search").on("click", function(){
+        $(".results").show(); 
+        $("#result-group").empty();
+        if(localStorage.zzz) {
+          var array = JSON.parse(localStorage.zzz);
+          var length = array.length;
+          for (var i = 0; i < length; i++) {
+            // console.log(array[i]);
+          
+            var item = $('<li class="efg"><a class="abc">'+array[i]+'<br /><span></span></a></li>')
+            // var item = $('<li>' + array[i] + '</li>')
+            item.on("click", function(){
+              var key = $(this).text();
+              window.open(searchPrefix + key);
+              $("#result-group").hide();
+            })
+            $("#result-group").append(item);
+          }
+        } else {
+          
+        }
+      });
+      
+      // $(".efg").on("click", function(){
+      //   alert("hhhh")
+      //   var key = $(this).text();
+      //   window.open(searchPrefix + key);
+      // }); 
+      
+      function search(){
+        var key=$("#search").val();
+        if(localStorage.zzz){
+          var array = JSON.parse(localStorage.zzz);
+        }else{
+          var array = [];
+        }
+        if(key.replace(/(^\s*)|(\s*$)/g, "").length == 0){
+        } else {
+          if (in_array(key, array)) {
+          } else {
+            array.push(key);
+            localStorage.zzz = JSON.stringify(array);
+          }
+        }
+        
+        // $("#result-group").hide();
+        $("#result-group").css("display", "none");
+        window.open(searchPrefix + key);
+        $("#search").val("");
+        
+      }
+      
+      function in_array(stringToSearch, arrayToSearch) {
+        for (s = 0; s < arrayToSearch.length; s++) {
+          thisEntry = arrayToSearch[s].toString();
+          if (thisEntry == stringToSearch) {
+           return true;
+          }
+        }
+        return false;
+      }
+    });
+  </script>  
+
+    
+</html>

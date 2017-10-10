@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+     <center><form class="form-inline" style="padding:30px">
+      <div class="btn-group">
+        <button id="item0" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">百度&nbsp&nbsp<span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li id="item1"><a href="#">百度</a></li>  
+          <li id="item2"><a href="#">搜狗</a></li> 
+          <li id="google"><a href="#">谷歌</a></li>
+        </ul>
+      </div>
+      <input type="search" class="form-control" id="search">
+      <button id="btn-search" type="button" class="btn btn-default" >搜索</button>
+     </form></center> 
+  </body>
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/docs.min.js"></script>
+    
+  <script>
+    $(document).ready(function(){
+      // 声明searchPrefixArray的网址数组
+      var searchPrefixArray = ["https://www.baidu.com/s?wd=", "https://www.sogou.com/web?query=", "https://www.google.co.kr/search?q="]; 
+      // 声明searchEngineArray网址数组相对应的中文名称
+      var searchEngineArray = ["百度", "搜狗", "谷歌"]; 
+      // 声明searchPrefix是searchPrefixArray网址数组的第一个网址
+      var searchPrefix = searchPrefixArray[0]; 
+      // 声明suffix是空格+下拉箭头
+      var suffix = '&nbsp&nbsp<span class="caret"></span>'; 
+      // 点击id为btn-search的搜索按钮
+      $("#btn-search").click(function(){
+        // 调用搜索函数
+        search(); 
+      });
+      //在搜索栏中点击回车按键
+      $("#search").keydown(function(event){  
+        if(event.keyCode == "13"){
+          event.preventDefault();
+          // 调用搜索函数
+          search(); 
+        }
+      });
+      // 点击下拉菜单的百度按钮
+      $("#item1").on("click", function(){
+        // 将默认按钮替换成百度+suffix，同时网址变成网址数组的第一个网址
+        $("#item0").html("百度" + suffix);
+        searchPrefix = searchPrefixArray[0];  
+      });
+      // 点击下拉菜单的搜狗按钮
+      $("#item2").on("click", function(){
+        // 将默认按钮替换成搜狗+suffix，同时网址变成网址数组的第二个网址
+        $("#item0").html("搜狗" + suffix);
+        searchPrefix = searchPrefixArray[1]; 
+      });
+      // 点击下拉菜单的谷歌按钮
+      $("#google").on("click", function(){
+        // 将默认按钮替换成谷歌+suffix，同时网址变成网址数组的第三个网址
+        $("#item0").html("谷歌" + suffix);
+        searchPrefix = searchPrefixArray[2]; 
+      });
+      
+      // 搜索函数
+      function search() {
+        var key =$("#search").val();
+        window.open(searchPrefix + key);
+      }
+    });
+  </script>  
+</html>

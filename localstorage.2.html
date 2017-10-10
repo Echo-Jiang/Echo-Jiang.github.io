@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        
+        function clickCounter(){
+            if ("undefined" !== typeof(Storage)) {
+                // clickcounter未赋值，直接进行else的步骤；
+                if (localStorage.clickcounter) {
+                    // clickcounter有值，非第一次访问；
+                    localStorage.clickcounter = Number(localStorage.clickcounter) + 1;
+                } else { 
+                    // clickcounter未赋值，为第一次访问；
+                    localStorage.clickcounter = 1;
+                }
+                // 浏览器支持web storage，显示此话；
+                $("#result").html("You have clicked the button " + localStorage.clickcounter + " time(s).")
+            } else {
+                // 浏览器不支持web storage，显示此话；
+                $("#result").html("Sorry, your browser does not support web storage...");
+            }
+        };
+    </script>
+    </head>
+    <body>
+    <p><button onclick = "clickCounter()" type = "button">Click me!</button></p>
+    <div id = "result"></div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <script>
+        $("body").ready(function(){
+            if ("undefined" !== typeof(Storage)) {
+                // 核心思想：看看fuck这个key有没有被设置过值，如果值为空，则为第一次访问，否则就不是第一次访问
+                if (localStorage.fuck) { // fuck有值，不是第一次访问
+                    $("body").text("welcome"); 
+                } else { // fuck没有值，是第一次访问
+                    $("body").text("hello world");
+                    // 给fuck设置值
+                    localStorage.fuck = "you"; 
+                }
+            } else {
+            }
+        });
+    </script>
+    </body>
+</html>

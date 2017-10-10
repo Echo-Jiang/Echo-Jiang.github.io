@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <script>
+        $("body").ready(function(){
+            if (typeof(Storage) !== "undefined") {
+                // if条件的key没赋值，结果为false，转入else；
+                if(localStorage.hello){
+                    // key 无值，非第一次访问
+                    $("body").text("Hello World!");
+                } else {
+                    // key 有值，第一次访问
+                    $("body").text("Welcome");
+                    localStorage.hello = "x"; // key 设置值，为x；
+                }
+            } else {
+            }
+        });
+    </script>
+    </body>
+</html>

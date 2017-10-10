@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body { margin: 0}
+            #nav {width: 100%; height: 60px; background: lightgrey; margin: 0 auto; position: fixed; top: 0px}
+            #nav li {display: inline; height: 60px}
+            #nav li a {display: inline-block; padding: 0 20px; height: 60px; line-height: 60px; color: white; font-size: 16px}
+            #nav li a:hover {background-color: green}
+        </style>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <script>
+        $("body").ready(function(){
+            var names = ["baidu", "sohu", "qq"];
+            var urls = ["https://www.baidu.com", "https://www.sohu.com", "https://www.qq.com"];
+            var ul = $("<ul></ul>");
+            ul.attr("id", "nav");
+            $("body").append(ul); 
+            
+            for(var i = 0; i < names.length; i++){
+                var li = $("<li></li>"); 
+                //var a = $("<a href='" + urls[i] + "'>" + names[i] + "</a>"); 
+                var a = $("<a></a>"); 
+                a.attr("href", urls[i]); 
+                a.text(names[i]);  
+                li.append(a); 
+                ul.append(li);
+            }
+            
+            var container = $("<div/>"); 
+            $("body").append(container); 
+            $("body").css("margin-top","60px");
+            for (var i = 0; i < 100; i++) {
+                container.append("<p>" + i + "</p>"); 
+            }
+        });
+    </script>
+    </body>
+</html>
+
